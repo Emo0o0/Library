@@ -18,7 +18,8 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID authorId;
+    @Column(length = 100, nullable = false)
     private String name;
-    @OneToMany(mappedBy = "author")
+    @ManyToMany(mappedBy = "authors")
     private List<Book> books;
 }

@@ -1,4 +1,4 @@
-package com.example.adastra.api.inputoutput.member.getall;
+package com.example.adastra.api.inputoutput.author;
 
 import lombok.*;
 
@@ -7,9 +7,9 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberGetAllOperationOutput {
+public class AuthorDTO {
 
     private String id;
     private String name;
-    private String email;
+
 }

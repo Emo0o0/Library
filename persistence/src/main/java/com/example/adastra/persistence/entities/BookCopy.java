@@ -18,10 +18,13 @@ public class BookCopy {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID bookCopyId;
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book_id", nullable = false)
     private Book book;
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private BookCopyCondition condition;
+    @Column(nullable = false, length = 100)
     private String location;
+    @Column(nullable = false)
     private boolean available;
 }
