@@ -18,9 +18,6 @@ import com.example.adastra.api.inputoutput.book.getbyauthor.BookGetByAuthorOpera
 import com.example.adastra.api.inputoutput.book.getbyid.BookGetByIdOperation;
 import com.example.adastra.api.inputoutput.book.getbyid.BookGetByIdOperationInput;
 import com.example.adastra.api.inputoutput.book.getbyid.BookGetByIdOperationOutput;
-import com.example.adastra.api.inputoutput.book.search.BookSearchOperation;
-import com.example.adastra.api.inputoutput.book.search.BookSearchOperationInput;
-import com.example.adastra.api.inputoutput.book.search.BookSearchOperationOutput;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +33,7 @@ public class BookController {
     private final BookGetAllOperation bookGetAllOperation;
     private final BookGetByAuthorOperation bookGetByAuthorOperation;
     private final BookGetByIdOperation bookGetByIdOperation;
-    private final BookSearchOperation bookSearchOperation;
+//    private final BookSearchOperation bookSearchOperation;
 
     @PostMapping("/create")
     public ResponseEntity<BookCreateOperationOutput> createBook(@RequestBody BookCreateOperationInput input) {
@@ -56,8 +53,12 @@ public class BookController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<BookGetAllListOperationOutput> getAllBooks() {
-        return ResponseEntity.status(200).body(bookGetAllOperation.process(new BookGetAllOperationInput()));
+    public ResponseEntity<BookGetAllListOperationOutput> getAllBooks(@RequestParam int pageNumber,
+                                                                     @RequestParam int itemsPerPage) {
+        return ResponseEntity.status(200).body(bookGetAllOperation.process(BookGetAllOperationInput.builder()
+                .pageNumber(pageNumber)
+                .itemsPerPage(itemsPerPage)
+                .build()));
     }
 
     @GetMapping("/getByAuthor/{authorName}")
@@ -74,8 +75,8 @@ public class BookController {
                 .build()));
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<BookSearchOperationOutput> searchBooks() {
-        return ResponseEntity.status(200).body(bookSearchOperation.process(new BookSearchOperationInput()));
-    }
+//    @GetMapping("/search")
+//    public ResponseEntity<BookSearchOperationOutput> searchBooks() {
+//        return ResponseEntity.status(200).body(bookSearchOperation.process(new BookSearchOperationInput()));
+//    }
 }

@@ -10,5 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 public class BookEditOperationInput implements OperationInput {
 
+    private String id;
     private String title;
 }
