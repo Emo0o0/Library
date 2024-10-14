@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
-@Setter(AccessLevel.PRIVATE)
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

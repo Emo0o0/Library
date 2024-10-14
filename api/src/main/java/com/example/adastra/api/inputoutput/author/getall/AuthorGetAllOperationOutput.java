@@ -1,6 +1,6 @@
 package com.example.adastra.api.inputoutput.author.getall;
 
-import com.example.adastra.api.inputoutput.book.BookDTO;
+import com.example.adastra.persistence.entities.Book;
 import lombok.*;
 
 import java.util.List;
@@ -14,6 +14,6 @@ public class AuthorGetAllOperationOutput {
 
     private String id;
     private String name;
-    private List<BookDTO> books;
+    private List<Book> books;
 
 }

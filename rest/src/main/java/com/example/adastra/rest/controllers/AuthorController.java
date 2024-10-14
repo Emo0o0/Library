@@ -48,8 +48,12 @@ public class AuthorController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<AuthorGetAllListOperationOutput> getAllAuthors() {
-        return ResponseEntity.status(200).body(authorGetAllOperation.process(new AuthorGetAllOperationInput()));
+    public ResponseEntity<AuthorGetAllListOperationOutput> getAllAuthors(@RequestParam int pageNumber,
+                                                                         @RequestParam int itemsPerPage) {
+        return ResponseEntity.status(200).body(authorGetAllOperation.process(AuthorGetAllOperationInput.builder()
+                .pageNumber(pageNumber)
+                .itemsPerPage(itemsPerPage)
+                .build()));
     }
 
     @GetMapping("/getById/{id}")

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Getter
-@Setter(AccessLevel.PRIVATE)
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

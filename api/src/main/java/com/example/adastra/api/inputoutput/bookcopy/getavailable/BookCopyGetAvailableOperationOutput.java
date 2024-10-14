@@ -1,6 +1,6 @@
 package com.example.adastra.api.inputoutput.bookcopy.getavailable;
 
-import com.example.adastra.api.inputoutput.book.BookDTO;
+import com.example.adastra.persistence.entities.Book;
 import lombok.*;
 
 @Getter
@@ -11,7 +11,7 @@ import lombok.*;
 public class BookCopyGetAvailableOperationOutput {
 
     private String id;
-    private BookDTO book;
+    private Book book;
     private String condition;
     private String location;
 }
