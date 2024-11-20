@@ -10,7 +10,8 @@ import lombok.*;
 @AllArgsConstructor
 public class BookCopyEditOperationInput implements OperationInput {
 
+    private String id;
     private String condition;
     private String location;
-    private boolean isAvailable;
+    private String isAvailable;
 }

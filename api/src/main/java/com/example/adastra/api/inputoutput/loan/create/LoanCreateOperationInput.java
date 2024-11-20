@@ -12,5 +12,4 @@ public class LoanCreateOperationInput implements OperationInput {
 
     private String memberId;
     private String bookCopyId;
-    private String dueDate;
 }
