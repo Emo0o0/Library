@@ -10,6 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 public class MemberLoginOperationOutput implements OperationResult {
 
-    private String success;
+    private boolean success;
     private String jwt;
 }

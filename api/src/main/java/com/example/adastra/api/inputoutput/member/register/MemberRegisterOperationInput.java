@@ -14,4 +14,5 @@ public class MemberRegisterOperationInput implements OperationInput {
     private String email;
     private String password;
 
+
 }

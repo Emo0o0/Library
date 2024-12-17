@@ -9,6 +9,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.Authentication;
 
 import javax.crypto.SecretKey;
@@ -16,7 +17,7 @@ import java.util.Date;
 
 @Configuration
 public class JWTTokenProvider {
-/*
+
     @Value("${security.jwt.secret-key}")
     private String JWTSecret;
 
@@ -25,15 +26,14 @@ public class JWTTokenProvider {
 
     public String generateToken(Authentication authentication) {
         Date currentDate = new Date();
-        Date expireDate = new Date(currentDate.getTime() + JWTExpirationDate);
+        Date expireDate = new Date(currentDate.getTime() + JWTExpirationDate * 3600L * 24 * 1000);
 
-        String token = Jwts.builder()
+        return Jwts.builder()
                 .subject(authentication.getName())
                 .issuedAt(currentDate)
                 .expiration(expireDate)
                 .signWith(key())
                 .compact();
-        return token;
     }
 
     public String getUsername(String token) {
@@ -66,6 +66,6 @@ public class JWTTokenProvider {
     private SecretKey key() {
         byte[] keyBytes = Decoders.BASE64.decode(JWTSecret);
         return Keys.hmacShaKeyFor(keyBytes);
-    }*/
+    }
 
 }
