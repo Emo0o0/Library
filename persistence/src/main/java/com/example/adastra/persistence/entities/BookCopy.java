@@ -28,6 +28,6 @@ public class BookCopy {
     @Column(nullable = false)
     private boolean available;
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "loan_id", nullable = true)
     private Loan loan;
 }

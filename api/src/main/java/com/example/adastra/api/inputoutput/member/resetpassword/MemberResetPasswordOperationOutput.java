@@ -10,5 +10,5 @@ import lombok.*;
 @AllArgsConstructor
 public class MemberResetPasswordOperationOutput implements OperationResult {
 
-    private String success;
+    private boolean success;
 }

@@ -11,6 +11,6 @@ import lombok.*;
 public class LoanRenewOperationInput implements OperationInput {
 
     private String loanId;
-    private String dueDate;
+    private String days;
 
 }

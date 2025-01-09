@@ -4,6 +4,7 @@ import com.example.adastra.api.inputoutput.book.getall.BookGetAllListOperationOu
 import com.example.adastra.api.inputoutput.book.getall.BookGetAllOperation;
 import com.example.adastra.api.inputoutput.book.getall.BookGetAllOperationInput;
 import com.example.adastra.api.inputoutput.book.getall.BookGetAllOperationOutput;
+import com.example.adastra.persistence.entities.Author;
 import com.example.adastra.persistence.entities.Book;
 import com.example.adastra.persistence.entities.BookGenres;
 import com.example.adastra.persistence.repositories.BookRepository;
@@ -33,7 +34,7 @@ public class BookGetAllOperationProcessor implements BookGetAllOperation {
                                 .id(book.getBookId().toString())
                                 .isbn(book.getIsbn())
                                 .title(book.getTitle())
-                                .authors(book.getAuthors())
+                                .authors(book.getAuthors().stream().map(Author::getName).toList())
                                 .genres(book.getGenre().stream()
                                         .map(BookGenres::toString)
                                         .collect(Collectors.toList()))

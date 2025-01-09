@@ -12,5 +12,5 @@ import java.util.List;
 @AllArgsConstructor
 public class MemberGetLoansListOperationOutput implements OperationResult {
 
-    private List<MemberGetLoansOperationOutput> members;
+    private List<MemberGetLoansOperationOutput> loans;
 }

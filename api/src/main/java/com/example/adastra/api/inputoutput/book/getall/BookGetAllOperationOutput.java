@@ -15,7 +15,7 @@ public class BookGetAllOperationOutput {
     private String id;
     private String title;
     private String isbn;
-    private List<Author> authors;
+    private List<String> authors;
     private List<String> genres;
 
 }

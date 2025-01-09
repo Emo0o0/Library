@@ -25,8 +25,7 @@ public class Loan {
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
-    @OneToMany
-    @JoinColumn(name = "loan_id", nullable = false)
+    @OneToMany(mappedBy = "loan", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookCopy> bookCopies;
     @Column(nullable = false, updatable = false)
     @CreationTimestamp

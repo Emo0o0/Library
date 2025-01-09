@@ -2,6 +2,8 @@ package com.example.adastra.api.inputoutput.member.getloansbymember;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -9,7 +11,9 @@ import lombok.*;
 @AllArgsConstructor
 public class MemberGetLoansOperationOutput {
 
-    private String id;
-    private String name;
-    private String email;
+    private String loanId;
+    private List<String> bookCopyIds;
+    private String loanDate;
+    private String dueDate;
+    private String returnDate;
 }

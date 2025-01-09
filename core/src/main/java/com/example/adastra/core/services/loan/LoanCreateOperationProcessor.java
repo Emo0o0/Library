@@ -4,6 +4,7 @@ import com.example.adastra.api.inputoutput.loan.create.LoanCreateOperation;
 import com.example.adastra.api.inputoutput.loan.create.LoanCreateOperationInput;
 import com.example.adastra.api.inputoutput.loan.create.LoanCreateOperationOutput;
 import com.example.adastra.core.exceptions.bookcopy.BookCopyIdNotFoundException;
+import com.example.adastra.core.exceptions.bookcopy.BookCopyUnavailableException;
 import com.example.adastra.core.exceptions.member.MemberIdNotFoundException;
 import com.example.adastra.persistence.entities.BookCopy;
 import com.example.adastra.persistence.entities.Loan;
@@ -34,6 +35,13 @@ public class LoanCreateOperationProcessor implements LoanCreateOperation {
 
         List<BookCopy> bookCopies = bookCopyRepository.findAllById(input.getBookCopyIds().stream().map(UUID::fromString).toList());
 
+        for (BookCopy bookCopy : bookCopies) {
+            if (!bookCopy.isAvailable()) {
+                throw new BookCopyUnavailableException("Book copy [" + bookCopy.getBookCopyId() + "] is not available");
+            }
+            bookCopy.setAvailable(false);
+        }
+
         Loan loan = Loan.builder()
                 .member(member)
                 .bookCopies(bookCopies)
@@ -42,6 +50,11 @@ public class LoanCreateOperationProcessor implements LoanCreateOperation {
                 .build();
 
         loanRepository.save(loan);
+
+        for (BookCopy bookCopy : bookCopies) {
+            bookCopy.setLoan(loan);
+        }
+        bookCopyRepository.saveAll(bookCopies);
 
         return LoanCreateOperationOutput.builder()
                 .memberName(member.getName())
