@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -31,12 +32,11 @@ public class LoanCreateOperationProcessor implements LoanCreateOperation {
         Member member = memberRepository.findById(UUID.fromString(input.getMemberId()))
                 .orElseThrow(() -> new MemberIdNotFoundException("Member with id [" + input.getMemberId() + "] was not found"));
 
-        BookCopy bookCopy = bookCopyRepository.findById(UUID.fromString(input.getBookCopyId()))
-                .orElseThrow(() -> new BookCopyIdNotFoundException("Book copy with id [" + input.getBookCopyId() + "] was not found"));
+        List<BookCopy> bookCopies = bookCopyRepository.findAllById(input.getBookCopyIds().stream().map(UUID::fromString).toList());
 
         Loan loan = Loan.builder()
                 .member(member)
-                .bookCopy(bookCopy)
+                .bookCopies(bookCopies)
                 .dueDate(LocalDate.now().plusDays(14))
                 .returnDate(null)
                 .build();
@@ -45,7 +45,7 @@ public class LoanCreateOperationProcessor implements LoanCreateOperation {
 
         return LoanCreateOperationOutput.builder()
                 .memberName(member.getName())
-                .bookCopyName(bookCopy.getBook().getTitle())
+                .bookCopyName(bookCopies.stream().map(bookCopy -> bookCopy.getBook().getTitle()).toList())
                 .loanDate(loan.getLoanDate().toString())
                 .dueDate(loan.getDueDate().toString())
                 .build();

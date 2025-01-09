@@ -27,4 +27,7 @@ public class BookCopy {
     private String location;
     @Column(nullable = false)
     private boolean available;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Loan loan;
 }

@@ -3,6 +3,8 @@ package com.example.adastra.api.inputoutput.loan.create;
 import com.example.adastra.api.base.OperationInput;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -11,5 +13,5 @@ import lombok.*;
 public class LoanCreateOperationInput implements OperationInput {
 
     private String memberId;
-    private String bookCopyId;
+    private List<String> bookCopyIds;
 }

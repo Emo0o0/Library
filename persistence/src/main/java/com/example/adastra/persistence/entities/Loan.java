@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -24,9 +25,9 @@ public class Loan {
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
-    @ManyToOne
-    @JoinColumn(name = "book_copy_id", nullable = false)
-    private BookCopy bookCopy;
+    @OneToMany
+    @JoinColumn(name = "loan_id", nullable = false)
+    private List<BookCopy> bookCopies;
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime loanDate;
