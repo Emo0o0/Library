@@ -37,7 +37,7 @@ public class LoanController {
         return ResponseEntity.status(201).body(loanCreateOperation.process(input));
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/deletE")
     public ResponseEntity<LoanDeleteOperationOutput> deleteLoan(@RequestParam String id) {
         return ResponseEntity.status(200).body(loanDeleteOperation.process(LoanDeleteOperationInput.builder()
                 .loanId(id)

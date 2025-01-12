@@ -49,15 +49,15 @@ public class MemberController {
         return ResponseEntity.status(201).body(memberRegisterOperation.process(input));
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/deletE")
     public ResponseEntity<MemberDeleteOperationOutput> deleteMember(@RequestBody MemberDeleteOperationInput input) {
         return ResponseEntity.status(200).body(memberDeleteOperation.process(input));
     }
 
-    @PatchMapping("/edit")
-    public ResponseEntity<MemberEditOperationOutput> editMember(@RequestBody MemberEditOperationInput input) {
-        return ResponseEntity.status(200).body(memberEditOperation.process(input));
-    }
+//    @PatchMapping("/edit")
+//    public ResponseEntity<MemberEditOperationOutput> editMember(@RequestBody MemberEditOperationInput input) {
+//        return ResponseEntity.status(200).body(memberEditOperation.process(input));
+//    }
 
     @PatchMapping("/reset")
     public ResponseEntity<MemberResetPasswordOperationOutput> resetPassword(@RequestBody MemberResetPasswordOperationInput input) {

@@ -35,7 +35,7 @@ public class BookCopyController {
         return ResponseEntity.status(201).body(bookCopyCreateOperation.process(input));
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/deletE")
     public ResponseEntity<BookCopyDeleteOperationOutput> deleteBookCopy(@RequestParam String id) {
         return ResponseEntity.status(200).body(bookCopyDeleteOperation.process(BookCopyDeleteOperationInput.builder()
                 .id(id)
