@@ -12,7 +12,8 @@ import lombok.*;
 public class BookCopyGetByIdOperationOutput implements OperationResult {
 
     private String id;
-    private Book book;
+    private String bookId;
+    private String bookTitle;
     private String condition;
     private String location;
     private boolean isAvailable;

@@ -5,6 +5,7 @@ import com.example.adastra.api.inputoutput.author.getbyid.AuthorGetByIdOperation
 import com.example.adastra.api.inputoutput.author.getbyid.AuthorGetByIdOperationOutput;
 import com.example.adastra.core.exceptions.author.AuthorIdNotFoundException;
 import com.example.adastra.persistence.entities.Author;
+import com.example.adastra.persistence.entities.Book;
 import com.example.adastra.persistence.repositories.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class AuthorGetByIdOperationProcessor implements AuthorGetByIdOperation {
         return AuthorGetByIdOperationOutput.builder()
                 .id(author.getAuthorId().toString())
                 .name(author.getName())
-                .books(author.getBooks())
+                .books(author.getBooks().stream().map(Book::getTitle).toList())
                 .build();
     }
 }

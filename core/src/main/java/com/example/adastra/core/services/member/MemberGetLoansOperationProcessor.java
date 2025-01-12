@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MemberGetLoansOperationProcessor implements MemberGetLoansOperation {
 
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public MemberGetLoansListOperationOutput process(MemberGetLoansOperationInput input) {
@@ -31,7 +31,7 @@ public class MemberGetLoansOperationProcessor implements MemberGetLoansOperation
                         .bookCopyIds(loan.getBookCopies().stream().map(bookCopy -> String.valueOf(bookCopy.getBookCopyId())).toList())
                         .loanDate(loan.getLoanDate().toString())
                         .dueDate(loan.getDueDate().toString())
-                        .returnDate(loan.getReturnDate().toString())
+                        .returnDate(loan.getReturnDate() != null ? loan.getReturnDate().toString() : null)
                         .build()).toList())
                 .build();
     }

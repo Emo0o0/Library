@@ -5,6 +5,7 @@ import com.example.adastra.api.inputoutput.author.getall.AuthorGetAllOperation;
 import com.example.adastra.api.inputoutput.author.getall.AuthorGetAllOperationInput;
 import com.example.adastra.api.inputoutput.author.getall.AuthorGetAllOperationOutput;
 import com.example.adastra.persistence.entities.Author;
+import com.example.adastra.persistence.entities.Book;
 import com.example.adastra.persistence.repositories.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -32,7 +33,7 @@ public class AuthorGetAllOperationProcessor implements AuthorGetAllOperation {
                         .map(author -> AuthorGetAllOperationOutput.builder()
                                 .id(author.getAuthorId().toString())
                                 .name(author.getName())
-                                .books(author.getBooks())
+                                .books(author.getBooks().stream().map(Book::getTitle).toList())
                                 .build()).collect(Collectors.toList()))
                 .build();
     }

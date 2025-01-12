@@ -14,6 +14,6 @@ public class AuthorGetAllOperationOutput {
 
     private String id;
     private String name;
-    private List<Book> books;
+    private List<String> books;
 
 }

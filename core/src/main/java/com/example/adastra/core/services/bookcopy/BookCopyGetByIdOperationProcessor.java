@@ -25,7 +25,8 @@ public class BookCopyGetByIdOperationProcessor implements BookCopyGetByIdOperati
 
         return BookCopyGetByIdOperationOutput.builder()
                 .id(bookCopy.getBookCopyId().toString())
-                .book(bookCopy.getBook())
+                .bookId(bookCopy.getBook().getBookId().toString())
+                .bookTitle(bookCopy.getBook().getTitle())
                 .condition(bookCopy.getCondition().toString())
                 .location(bookCopy.getLocation())
                 .isAvailable(bookCopy.isAvailable())

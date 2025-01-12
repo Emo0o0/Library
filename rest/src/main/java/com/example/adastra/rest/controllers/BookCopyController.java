@@ -48,9 +48,9 @@ public class BookCopyController {
     }
 
     @GetMapping("/getAvailable/{bookId}")
-    public ResponseEntity<BookCopyGetAvailableListOperationOutput> getAvailableBookCopies(@PathVariable String bookCopyId) {
+    public ResponseEntity<BookCopyGetAvailableListOperationOutput> getAvailableBookCopies(@PathVariable String bookId) {
         return ResponseEntity.status(200).body(bookCopyGetAvailableOperation.process(BookCopyGetAvailableOperationInput.builder()
-                .bookId(bookCopyId)
+                .bookId(bookId)
                 .build()));
     }
 
