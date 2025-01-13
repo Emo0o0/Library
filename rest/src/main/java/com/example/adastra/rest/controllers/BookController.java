@@ -18,6 +18,9 @@ import com.example.adastra.api.inputoutput.book.getbyauthor.BookGetByAuthorOpera
 import com.example.adastra.api.inputoutput.book.getbyid.BookGetByIdOperation;
 import com.example.adastra.api.inputoutput.book.getbyid.BookGetByIdOperationInput;
 import com.example.adastra.api.inputoutput.book.getbyid.BookGetByIdOperationOutput;
+import com.example.adastra.api.inputoutput.book.getcopies.BookGetCopiesListOperationOutput;
+import com.example.adastra.api.inputoutput.book.getcopies.BookGetCopiesOperation;
+import com.example.adastra.api.inputoutput.book.getcopies.BookGetCopiesOperationInput;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +36,7 @@ public class BookController {
     private final BookGetAllOperation bookGetAllOperation;
     private final BookGetByAuthorOperation bookGetByAuthorOperation;
     private final BookGetByIdOperation bookGetByIdOperation;
-//    private final BookSearchOperation bookSearchOperation;
+    private final BookGetCopiesOperation bookGetCopiesOperation;
 
     @PostMapping("/create")
     public ResponseEntity<BookCreateOperationOutput> createBook(@RequestBody BookCreateOperationInput input) {
@@ -58,6 +61,13 @@ public class BookController {
         return ResponseEntity.status(200).body(bookGetAllOperation.process(BookGetAllOperationInput.builder()
                 .pageNumber(pageNumber)
                 .itemsPerPage(itemsPerPage)
+                .build()));
+    }
+
+    @GetMapping("/getCopies/{bookId}")
+    public ResponseEntity<BookGetCopiesListOperationOutput> getBookCopies(@PathVariable String bookId) {
+        return ResponseEntity.status(200).body(bookGetCopiesOperation.process(BookGetCopiesOperationInput.builder()
+                .bookId(bookId)
                 .build()));
     }
 

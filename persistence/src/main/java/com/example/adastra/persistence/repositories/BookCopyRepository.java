@@ -12,4 +12,6 @@ public interface BookCopyRepository extends JpaRepository<BookCopy, UUID> {
     Boolean existsByBook(Book book);
 
     List<BookCopy> findByBookAndAvailable(Book book, Boolean isAvailable);
+
+    List<BookCopy> findByBook(Book book);
 }
